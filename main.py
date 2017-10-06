@@ -20,13 +20,14 @@ def main():
         print ("Please execute with 4 arguments <#States> <#Actions> <Input File> <Discount Factor>")
         exit()
 
-    numStates = sys.argv[1]
-    numActions = sys.argv[2]
+    numStates = int(sys.argv[1])
+    numActions = int(sys.argv[2])
     inputFileName = sys.argv[3]
-    y = sys.argv[4]
+    y = float(sys.argv[4])
     
     # Reading in data from input file
     with open(inputFileName) as inputFile:
+        statesList = []
 
         for line in inputFile:
             # Get data from line
@@ -38,8 +39,16 @@ def main():
             reward = int(rewardString)
             del spaceSplit[0] 
 
+            statesList.append(stateName)
+
+            # Get Transitions 
+
+
             # print(spaceSplit)
 
+        maxSumDF = pd.DataFrame.from_records([[None]*numStates for x in range(20)], columns=statesList)
+        print(maxSumDF)
+        
 
 
 if __name__ == "__main__":
